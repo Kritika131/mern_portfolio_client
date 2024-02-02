@@ -78,9 +78,10 @@ const AdminProjects = () => {
             <hr/>
             <img src={project.image} className='h-60 w-80' alt="" />
             {/* <h1> {project.image}</h1> */}
-            <h1>github : {project.github_link}</h1>
-            <h1>deployed : {project.deployed_link}</h1>
-            <h1>{project.description}</h1>
+            <h1>github-link : {project.github_link}</h1>
+            <h1>Deployed-link : {project.deployed_link}</h1>
+            <h1>Technologie Used : {project.technologies}</h1>
+            <h1>Description : {project.description}</h1>
             <div className="flex justify-end gap-4 mt-5">
               <button className="bg-red-500 text-white px-5 py-2 rounded-sm"
               onClick={()=>{
