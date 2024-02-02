@@ -1,0 +1,11 @@
+.text_name::after{
+  content: "";
+  position: absolute;
+  bottom: -0.6rem;
+  left: 0;
+  width:9.5rem;
+  height: 0.3rem;
+  border-radius: 4px;
+  background:#F97316 ;
+  @apply sm:w-[4.5rem] sm:h-[0.2rem] sm:bottom-[-0.4rem]
+}
