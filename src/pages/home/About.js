@@ -21,7 +21,7 @@ const About = () => {
       <SectionTitle title="About me"/>
       <div className="flex sm:flex-col w-full items-center gap-28 sm:gap-1 py-10 sm:py-0   ">
         <div className="h-[50vh]  w-1/2 sm:w-full flex items-center justify-center sm:px-12 sm:h-[25vh]   ">
-          <lottie-player src={about.lottie_url} speed="1"  style={{width:"20rem",height:"20rem"}} autoplay ></lottie-player>
+          <lottie-player src={about.lottie_url && about.lottie_url} speed="1"  style={{width:"20rem",height:"20rem"}} autoplay ></lottie-player>
          
         </div>
         <p className=' w-1/2 text-gray-400  sm:w-full sm:text-sm sm:text-justify '> {about.description_1}.<br/> {about.description_2 } </p>
