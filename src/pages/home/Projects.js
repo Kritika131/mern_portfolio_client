@@ -86,6 +86,14 @@ const Projects = () => {
          </div>
          </div>
         </div>
+        
+        <div className='text-thirdry sm:text-sm '><strong>Technologies Used -</strong> 
+          {
+            projects[selectedItem] && projects[selectedItem].technologies.map((tech,i,arr)=>(
+              <span className='text-white' key={i}> {tech} , </span>
+            ))
+          }
+        </div>
          {/* <h1 className="text-thirdry">{projects[selectedItem].d}</h1>  */}
          <p className="text-white sm:text-sm">{projects[selectedItem].description}</p>
          {/* <p className='text-white'>
