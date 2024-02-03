@@ -42,16 +42,18 @@ const Login = () => {
   }
   return (
     <div className='flex justify-center items-center h-screen bg-primary'>
-      <div className='w-96 flex gap-5 p-5  sm:w-72 sm:gap-2 sm:px-3 shadow border bg-white border-gray-500 flex-col'>
-        <h1 className='text-2xl text-primary font-bold text-center  '  >Admin Login</h1>
+      <div className=' w-96 flex gap-2  p-5  sm:w-72 sm:gap-2 sm:px-4 shadow border bg-white border-gray-500 flex-col'>
+        <h1 className='text-2xl text-primary font-bold text-center sm:text-xl  '  >Admin Login</h1>
         <hr />
-        <div className=" flex items-center justify-center">
+        <div className=" flex items-center justify-center sm:text-sm">
          <img src={`${user.profile_img ? URL.createObjectURL(user.profile_img) : "https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&rs=1&c=1&qlt=95&w=117&h=117"}`} className=' rounded-full object-cover  h-40 w-40 sm:h-28 sm:w-28 sm:mb-4 mb-7' alt="add profile photo" />
           </div> 
         <input type="email" placeholder='email' value={user.email} onChange={e=>setUser({...user,email:e.target.value})} />
         <input type="password" placeholder='password' value={user.password} onChange={e=>setUser({...user,password:e.target.value})} />
-        <button className="bg-primary text-white p-2 rounded sm:py-1 hover:opacity-80 mt-6 sm:mt-4" onClick={login}>Login</button>
-        <p>Doesn't have an account? <Link to="/admin-signup" className="text-secondary hover:text-orange-700">SignUp</Link></p>
+        <p>Forgot Password? <Link to="/forgot-password" className="text-secondary hover:text-orange-700">Recover</Link></p>
+        
+        <button className="bg-primary text-white p-2 rounded sm:py-1 hover:opacity-80 mt-6 sm:mt-2 sm:text-md" onClick={login}>Login</button>
+        <p className='sm:text-sm'>Doesn't have an account? <Link to="/admin-signup" className="text-secondary hover:text-orange-700">SignUp</Link></p>
       </div>
     </div>
   )

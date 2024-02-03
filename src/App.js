@@ -9,6 +9,7 @@ import Admin from './pages/adminPage'
 import "./App.css"
 import Login from './pages/adminPage/Login'
 import SignUp from './pages/adminPage/Signup'
+import ForgotPassword from './pages/adminPage/ForgotPassword'
 
 const router = createBrowserRouter([
   
@@ -27,6 +28,11 @@ const router = createBrowserRouter([
   {
     path:"/admin-login",
     element:<Login/>
+  
+  },
+  {
+    path:"/forgot-password",
+    element:<ForgotPassword/>
   }
 ])
 const App = () => {
