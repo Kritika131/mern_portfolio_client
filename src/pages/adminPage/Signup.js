@@ -22,8 +22,9 @@ const SignUp = () => {
 
       
       dispatch(Showloading())
+      // const response = await axios.post("http://localhost:6060/admin/admin-signup", user);
       const response = await axios.post(process.env.REACT_APP_BASE_URL+"/admin/admin-signup", user);
-      dispatch(Hideloading())
+      dispatch(Hideloading())  
       if(response.data.success){
         message.success(response.data.msg)
         // localStorage.setItem('token',JSON.stringify(response.data));

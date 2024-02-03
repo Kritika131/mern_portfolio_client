@@ -29,9 +29,9 @@ const About = () => {
 
       <div className="py-8 sm:py-10">
         <h1 className=" text-thirdry text-xl sm:text-lg ">Here are a few technologies I've been working with recently:</h1>
-        <div className="flex flex-wrap sm:gap-4  sm:justify-center justify-between mt-6">
+        <div className="flex flex-wrap gap-5 sm:gap-4   sm:justify-center justify-between  mt-6 ">
         {about.skills && about.skills.map((skill,idx)=>(
-          <div key={idx} className='border border-thirdry py-2 px-10 sm:px-5 sm:py-1'>
+          <div key={idx} className='border border-thirdry py-2 px-12 sm:px-5 sm:py-1'>
               <h1 className='text-thirdry sm:text-md'>{skill}</h1>
           </div>
         ))}
