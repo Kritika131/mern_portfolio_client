@@ -34,7 +34,7 @@ const Contact = () => {
 
         </div>
         <div className=' h-[350px] sm:h-[280px]  flex items-center justify-center'>
-          <img src="https://icon-library.com/images/icon-for-contact-us/icon-for-contact-us-15.jpg" alt="" className='sm:h-[200px] h-[350px] -mt-8 mr-16 '  />
+          <img src="https://icon-library.com/images/icon-for-contact-us/icon-for-contact-us-15.jpg" alt="" className='sm:h-[175px] h-[350px] -mt-8 mr-16 '  />
           {/* <lottie-player src="https://assets9.lottiefiles.com/packages/lf20_eroqjb7w.json" background="transparent" speed="1" ></lottie-player> */}
         </div>
       </div>

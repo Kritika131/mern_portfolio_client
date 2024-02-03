@@ -48,7 +48,7 @@ const Login = () => {
         <div className=" flex items-center justify-center">
          <img src={`${user.profile_img ? URL.createObjectURL(user.profile_img) : "https://tse1.mm.bing.net/th?id=OIP.GHGGLYe7gDfZUzF_tElxiQHaHa&pid=Api&rs=1&c=1&qlt=95&w=117&h=117"}`} className=' rounded-full object-cover  h-40 w-40 sm:h-28 sm:w-28 sm:mb-4 mb-7' alt="add profile photo" />
           </div> 
-        <input type="text" placeholder='email' value={user.email} onChange={e=>setUser({...user,email:e.target.value})} />
+        <input type="email" placeholder='email' value={user.email} onChange={e=>setUser({...user,email:e.target.value})} />
         <input type="password" placeholder='password' value={user.password} onChange={e=>setUser({...user,password:e.target.value})} />
         <button className="bg-primary text-white p-2 rounded sm:py-1 hover:opacity-80 mt-6 sm:mt-4" onClick={login}>Login</button>
         <p>Doesn't have an account? <Link to="/admin-signup" className="text-secondary hover:text-orange-700">SignUp</Link></p>
