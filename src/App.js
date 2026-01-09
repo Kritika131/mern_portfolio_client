@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import {  RouterProvider, createBrowserRouter } from 'react-router-dom'
+import React from 'react'
+import { RouterProvider, createBrowserRouter, Navigate } from 'react-router-dom'
 import Home from './pages/home'
 import Loader from './components/Loader'
-import axios from "axios"
-import {useDispatch,useSelector} from "react-redux"
-import { Hideloading, SetPortfolioData, Showloading, reloadingData, } from './redux/portfolioSlice'
+import { useSelector } from "react-redux"
 import Admin from './pages/adminPage'
 import "./App.css"
 import Login from './pages/adminPage/Login'
@@ -12,71 +10,41 @@ import SignUp from './pages/adminPage/Signup'
 import ForgotPassword from './pages/adminPage/ForgotPassword'
 
 const router = createBrowserRouter([
-  
   {
-    path:"/",
-    element:<Home/>
+    path: "/",
+    element: <Navigate to="/admin-login" replace />
   },
   {
-    path:"/admin",
-    element:<Admin/>
+    path: "/portfolio/:username",
+    element: <Home />
   },
   {
-    path:"/admin-signup",
-    element:<SignUp/>
+    path: "/admin",
+    element: <Admin />
   },
   {
-    path:"/admin-login",
-    element:<Login/>
-  
+    path: "/admin-signup",
+    element: <SignUp />
   },
   {
-    path:"/forgot-password",
-    element:<ForgotPassword/>
+    path: "/admin-login",
+    element: <Login />
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />
   }
 ])
+
 const App = () => {
-  const {loading,portfolioData,reloadData} = useSelector((state)=>state.portfolio)
-
-  const dispatch = useDispatch()
-
-  const getPortfolioData=async()=>{
-      try{
-        dispatch(Showloading())
-        const response =await  axios.get(process.env.REACT_APP_BASE_URL+'/portfolio/get-portfolio-data');
-        console.log(response.data) 
-        if(response.data){
-          dispatch(SetPortfolioData(response.data))
-          dispatch(reloadingData(false))
-          dispatch(Hideloading())
-        }
-        
-      } catch (err){
-         console.log("fetch data error ",err );
-         dispatch(Hideloading())
-
-      }
-  }
-  useEffect(()=>{
-    if(!portfolioData){
-      getPortfolioData()
-
-    }
-  },[portfolioData])
-
-  useEffect(()=>{
-     if(reloadData){
-      getPortfolioData();
-      console.log("portfolioData--",portfolioData);
-     }
-  },[reloadData])
+  const { loading } = useSelector((state) => state.portfolio)
 
   return (
     <>
-    {loading ? <Loader/> : null }
-    <RouterProvider router={router}/>
+      {loading ? <Loader /> : null}
+      <RouterProvider router={router} />
     </>
-    )
+  )
 }
 
 export default App

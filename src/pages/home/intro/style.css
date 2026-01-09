@@ -9,3 +9,17 @@
   background:#F97316 ;
   @apply sm:w-[4.5rem] sm:h-[0.2rem] sm:bottom-[-0.4rem]
 }
+
+/* Slow spin animation for profile image ring */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}

@@ -1,29 +1,28 @@
 import React, { useState } from 'react'
-import {useDispatch,useSelector} from "react-redux"
-import {Modal,Form,message} from 'antd'
+import { useDispatch, useSelector } from "react-redux"
+import { Modal, Form, message } from 'antd'
 import { Hideloading, Showloading, reloadingData } from '../../redux/portfolioSlice'
-import axios from "axios";
+import api from '../../api/axios'
 
 const AdminEducation = () => {
-  const dispatch =useDispatch()
-  const {portfolioData} = useSelector(state=>state.portfolio)
-  const {educations}=portfolioData
-  const [showModal,setShowModal] = useState(false);
-  const [selectedItemForEdit,setSelectedItemForEdit] = useState(null);
-  const [type,setType] = useState('add')
+  const dispatch = useDispatch()
+  const { portfolioData } = useSelector(state => state.portfolio)
+  const { educations } = portfolioData
+  const [showModal, setShowModal] = useState(false)
+  const [selectedItemForEdit, setSelectedItemForEdit] = useState(null)
+  const [type, setType] = useState('add')
 
-  const onFinish = async(values)=>{
-    try{
+  const onFinish = async (values) => {
+    try {
       dispatch(Showloading())
-      let response;
-      if(selectedItemForEdit){
-          response = await axios.put(process.env.REACT_APP_BASE_URL+"/portfolio/update-education",{
-            ...values,
-            _id:selectedItemForEdit._id,
-          });
-      } else{
-        console.log("selectedItem ", selectedItemForEdit);
-        response = await axios.post(process.env.REACT_APP_BASE_URL+"/portfolio/add-education",values )
+      let response
+      if (selectedItemForEdit) {
+        response = await api.put("/portfolio/update-education", {
+          ...values,
+          _id: selectedItemForEdit._id,
+        })
+      } else {
+        response = await api.post("/portfolio/add-education", values)
 
       }
       dispatch(Hideloading())
@@ -44,26 +43,20 @@ const AdminEducation = () => {
       console.log(err);
      }
   }
-  const onDelete = async(item)=>{
-    try{
-      console.log("deleteed",{_id:item._id});
-      dispatch(Showloading());
-      const response = await axios.delete(process.env.REACT_APP_BASE_URL+"/portfolio/delete-education/"+item._id);
-      console.log("resssssssss ",response);
-      dispatch(Hideloading());
-      if(response.data.success){
-        
-        message.success(response.data.msg);
-        dispatch(Hideloading())
+  const onDelete = async (item) => {
+    try {
+      dispatch(Showloading())
+      const response = await api.delete("/portfolio/delete-education/" + item._id)
+      dispatch(Hideloading())
+      if (response.data.success) {
+        message.success(response.data.msg)
         dispatch(reloadingData(true))
-        console.log("response----",response.data);
-      } else{
+      } else {
         message.error(response.data.msg)
       }
-    }catch(err){
-      message.error(err.message)
+    } catch (err) {
+      message.error(err.response?.data?.msg || err.message)
       dispatch(Hideloading())
-      console.log(err);
     }
   }
   return (

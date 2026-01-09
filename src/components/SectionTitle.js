@@ -1,10 +1,18 @@
 import React from 'react'
 
-const SectionTitle = ({title}) => {
+const SectionTitle = ({ title }) => {
   return (
-    <div className='flex gap-6 items-center text-center py-10 sm:py-8 sm:gap-1 sm:flex-col'>
-      <h1 className="text-3xl text-secondary sm:text-2xl " style={{fontFamily:"'Rubik Doodle Shadow', sans-serif"}}>{title}</h1>
-      <div className="w-56 h-[2px] sm:w-36 sm:border-2 rounded-lg border-[1px] mt-[4px] border-secondary"></div>
+    <div className='flex flex-col items-start py-4 sm:py-2'>
+      <div className="flex items-center gap-4">
+        <h2 className="text-4xl sm:text-2xl font-bold text-white" style={{ fontFamily: "'Orbitron', sans-serif" }}>
+          {title}
+        </h2>
+        <div className="hidden sm:block w-16 h-0.5 bg-gradient-to-r from-thirdry to-transparent"></div>
+      </div>
+      <div className="flex items-center gap-4 mt-3 w-full">
+        <div className="w-24 sm:w-16 h-1 rounded-full bg-gradient-to-r from-thirdry to-secondary"></div>
+        <div className="flex-1 h-px bg-gradient-to-r from-thirdry/30 to-transparent"></div>
+      </div>
     </div>
   )
 }

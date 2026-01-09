@@ -1,22 +1,22 @@
 import React from 'react'
-import {Form,Input} from 'antd'
-import {useSelector,useDispatch} from "react-redux"
+import { Form, Input } from 'antd'
+import { useSelector, useDispatch } from "react-redux"
 import { Hideloading, Showloading } from '../../redux/portfolioSlice'
-import {message} from 'antd'
-import axios  from 'axios'
+import { message } from 'antd'
+import api from '../../api/axios'
 
 const AdminContact = () => {
 
-  const dispatch =useDispatch()
-  const {portfolioData} = useSelector(state=>state.portfolio)
- 
-  const onFinish = async(values)=>{
-     try{
+  const dispatch = useDispatch()
+  const { portfolioData } = useSelector(state => state.portfolio)
+
+  const onFinish = async (values) => {
+    try {
       dispatch(Showloading())
-      const response = await axios.put(process.env.REACT_APP_BASE_URL+"/portfolio/update-contact",{
+      const response = await api.put("/portfolio/update-contact", {
         ...values,
-        _id:portfolioData.contact._id
-      } )
+        _id: portfolioData.contact._id
+      })
       dispatch(Hideloading())
       if(response.data.success){
         message.success(response.data.msg)
