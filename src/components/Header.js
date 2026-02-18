@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { setLogout } from '../redux/userSlice'
 import { ClearPortfolioData } from '../redux/portfolioSlice'
 import Resume from "../assets/Resume.pdf"
+import { X, Menu, Check, FileDown, Mail } from 'lucide-react'
 
 const Header = ({ admin }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -111,13 +112,9 @@ const Header = ({ admin }) => {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
+                <X className="w-6 h-6 text-white" />
               ) : (
-                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <Menu className="w-6 h-6 text-white" />
               )}
             </button>
           </div>
@@ -144,9 +141,7 @@ const Header = ({ admin }) => {
             className="absolute top-4 right-4 p-2 rounded-lg hover:bg-white/10 transition-colors"
             onClick={() => setMobileMenuOpen(false)}
           >
-            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="w-6 h-6 text-white" />
           </button>
 
           {/* Logo */}
@@ -175,9 +170,7 @@ const Header = ({ admin }) => {
               >
                 <span className="text-sm font-medium">{item.label}</span>
                 {active === item.name && (
-                  <svg className="w-4 h-4 ml-auto" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                  </svg>
+                  <Check className="w-4 h-4 ml-auto" />
                 )}
               </a>
             ))}
@@ -190,9 +183,7 @@ const Header = ({ admin }) => {
               download
               className="btn-outline w-full flex items-center justify-center gap-2 text-sm"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-              </svg>
+              <FileDown className="w-4 h-4" />
               Download CV
             </a>
             <a
@@ -200,9 +191,7 @@ const Header = ({ admin }) => {
               onClick={() => setMobileMenuOpen(false)}
               className="btn-primary w-full flex items-center justify-center gap-2 text-sm"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
+              <Mail className="w-4 h-4" />
               Hire Me
             </a>
           </div>

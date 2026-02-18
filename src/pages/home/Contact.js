@@ -4,34 +4,14 @@ import { useSelector } from "react-redux"
 import { useParams } from 'react-router-dom'
 import { message } from 'antd'
 import api from '../../api/axios'
+import { User, Mail, Phone, MapPin, UserCircle, Check, Send } from 'lucide-react'
 
 const contactIcons = {
-  name: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-    </svg>
-  ),
-  email: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-    </svg>
-  ),
-  mobile: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-    </svg>
-  ),
-  country: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-  ),
-  gender: (
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-  ),
+  name: <User className="w-5 h-5" />,
+  email: <Mail className="w-5 h-5" />,
+  mobile: <Phone className="w-5 h-5" />,
+  country: <MapPin className="w-5 h-5" />,
+  gender: <UserCircle className="w-5 h-5" />,
 }
 
 const Contact = () => {
@@ -82,7 +62,11 @@ const Contact = () => {
 
   if (!contact) return null
 
-  const contactFields = Object.entries(contact).filter(([key]) => key !== '_id' && key !== 'userId')
+  let contactFields = Object.entries(contact).filter(([key]) => key !== '_id' && key !== 'userId' && contact[key])
+
+
+  console.log("contactFields--", contactFields);
+  console.log("contact--", contact);
 
   return (
     <div className='py-16 sm:py-8 min-h-[75vh] relative' id='contact'>
@@ -124,16 +108,16 @@ const Contact = () => {
             <div className="mt-8 pt-6 border-t border-white/10">
               <h4 className="text-gray-400 text-sm mb-4">Connect with me</h4>
               <div className="flex gap-4">
-                <a href="#" className="social-link hover-glow">
+                <a href="https://github.com/Kritika131" className="social-link hover-glow">
                   <box-icon name='github' type='logo' color='#54D6BB'></box-icon>
                 </a>
-                <a href="#" className="social-link hover-glow">
+                <a href="https://www.linkedin.com/in" className="social-link hover-glow">
                   <box-icon name='linkedin' type='logo' color='#54D6BB'></box-icon>
                 </a>
-                <a href="#" className="social-link hover-glow">
+                <a href="https://twitter.com" className="social-link hover-glow">
                   <box-icon name='twitter' type='logo' color='#54D6BB'></box-icon>
                 </a>
-                <a href="#" className="social-link hover-glow">
+                <a href="https://www.instagram.com" className="social-link hover-glow">
                   <box-icon name='instagram' type='logo' color='#54D6BB'></box-icon>
                 </a>
               </div>
@@ -153,9 +137,7 @@ const Contact = () => {
             {sent ? (
               <div className="text-center py-12">
                 <div className="w-20 h-20 rounded-full bg-thirdry/20 flex items-center justify-center mx-auto mb-6 animate-scaleIn">
-                  <svg className="w-10 h-10 text-thirdry" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
+                  <Check className="w-10 h-10 text-thirdry" />
                 </div>
                 <h4 className="text-2xl font-bold text-white mb-2">Message Sent!</h4>
                 <p className="text-gray-400">Thank you for reaching out. I'll get back to you soon.</p>
@@ -213,9 +195,7 @@ const Contact = () => {
                     </>
                   ) : (
                     <>
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
+                      <Send className="w-5 h-5" />
                       Send Message
                     </>
                   )}

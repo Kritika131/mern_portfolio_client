@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Modal, Form, message } from 'antd'
 import { Hideloading, Showloading, reloadingData } from '../../redux/portfolioSlice'
 import api from '../../api/axios'
+import { Check } from 'lucide-react'
 
 const AdminServices = () => {
   const dispatch = useDispatch()
@@ -92,9 +93,7 @@ const AdminServices = () => {
               <ul className="text-sm text-gray-500 mb-4 space-y-1">
                 {service.features.map((feature, idx) => (
                   <li key={idx} className="flex items-center gap-2">
-                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                    <Check className="w-4 h-4 text-green-500" />
                     {feature}
                   </li>
                 ))}

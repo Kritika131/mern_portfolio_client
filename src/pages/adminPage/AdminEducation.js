@@ -99,7 +99,7 @@ const AdminEducation = () => {
       
       {
         (type==="add" || selectedItemForEdit) && (
-            <Modal visible={showModal} title={selectedItemForEdit ? "Edit Experience" : "Add Experience"} footer={null} onCancel={()=>{
+            <Modal visible={showModal} title={selectedItemForEdit ? "Edit Education" : "Add Education"} footer={null} onCancel={()=>{
         setShowModal(false);
         setSelectedItemForEdit(null)
       }}>

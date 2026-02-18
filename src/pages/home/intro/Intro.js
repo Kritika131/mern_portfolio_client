@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector } from "react-redux"
 import Resume from "../../../assets/Resume.pdf"
 import "./style.css"
+import { FileDown, MessageCircle } from 'lucide-react'
 
 // Custom Typing Effect Hook
 const useTypingEffect = (texts, typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) => {
@@ -43,7 +44,7 @@ const Intro = () => {
   const { name, welcomeText, caption, description, profileImage, resumeUrl } = intro || {}
 
   // Typing effect for caption
-  const typingTexts = [caption, "Full Stack Developer", "Creative Coder", "Problem Solver"]
+  const typingTexts = [caption, "Creative Coder", "Problem Solver"]
   const typedText = useTypingEffect(typingTexts.filter(Boolean), 80, 40, 2000)
 
   if (!intro) return null
@@ -54,7 +55,7 @@ const Intro = () => {
   return (
     <div className="flex min-h-[85vh] sm:min-h-[75vh] justify-between items-center relative overflow-hidden px-4" id='home'>
       {/* Main Content */}
-      <div className='flex flex-col text-gray-400 items-start justify-center gap-3 mt-5 z-10 animate-fadeIn'>
+      <div className='flex flex-col text-gray-400 items-start justify-center gap-3 mt-5 z-10 w-[60%] animate-fadeIn'>
         {/* Welcome Text with animation */}
         <h3 className='text-xl sm:text-lg text-thirdry animate-fadeInLeft'>
           <span className="text-secondary">&lt;</span> {welcomeText} <span className="text-secondary">/&gt;</span>
@@ -74,8 +75,8 @@ const Intro = () => {
         </div>
 
         {/* Description with glass effect */}
-        <div className="glass-dark p-4 rounded-lg mt-2 animate-fadeIn delay-300">
-          <p className='w-2/3 sm:w-full sm:text-justify sm:text-sm text-gray-300 leading-relaxed'>
+        <div className="glass-dark p-4 pr-8 rounded-lg mt-2 animate-fadeIn delay-300">
+          <p className='w-full sm:w-full sm:text-justify sm:text-sm text-gray-300 leading-relaxed'>
             {description}
           </p>
         </div>
@@ -89,18 +90,14 @@ const Intro = () => {
             rel="noopener noreferrer"
             className='btn-primary flex items-center gap-2 sm:text-sm hover-lift'
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
+            <FileDown className="w-5 h-5" />
             Download Resume
           </a>
           <a
             href="#contact"
             className='btn-outline flex items-center gap-2 sm:text-sm sm:px-4 hover-lift'
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
+            <MessageCircle className="w-5 h-5" />
             Let's Talk
           </a>
         </div>
