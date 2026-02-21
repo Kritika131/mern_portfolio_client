@@ -186,8 +186,8 @@ const Admin = () => {
         return <AdminBlog />
       case 'services':
         return <AdminServices />
-      case 'analytics':
-        return <AdminAnalytics />
+      // case 'analytics':
+      //   return <AdminAnalytics />
       default:
         return <AdminIntro />
     }
