@@ -51,6 +51,26 @@ const Header = ({ admin }) => {
 
   // Get name from portfolio data for public view
   const displayName = portfolioData?.intro?.name || 'Portfolio'
+  const resumeLink = portfolioData?.intro?.resumeUrl || Resume
+  const hasResume = !!portfolioData?.intro?.resumeUrl
+
+  const handleDownloadResume = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch(resumeLink)
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${displayName}_Resume.pdf`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+    } catch {
+      window.open(resumeLink, '_blank')
+    }
+  }
 
   return (
     <>
@@ -91,13 +111,15 @@ const Header = ({ admin }) => {
 
             {/* Desktop CTA */}
             <div className="hidden md:flex items-center gap-4">
-              <a
-                href={Resume}
-                download
-                className="btn-outline text-sm py-2 px-6"
-              >
-                Download CV
-              </a>
+              {hasResume && (
+                <a
+                  href={resumeLink}
+                  onClick={handleDownloadResume}
+                  className="btn-outline text-sm py-2 px-6"
+                >
+                  Download CV
+                </a>
+              )}
               <a
                 href="#contact"
                 className="btn-primary text-sm py-2 px-6"
@@ -178,14 +200,16 @@ const Header = ({ admin }) => {
 
           {/* Mobile CTA Buttons */}
           <div className="mt-8 space-y-3">
-            <a
-              href={Resume}
-              download
-              className="btn-outline w-full flex items-center justify-center gap-2 text-sm"
-            >
-              <FileDown className="w-4 h-4" />
-              Download CV
-            </a>
+            {hasResume && (
+              <a
+                href={resumeLink}
+                onClick={handleDownloadResume}
+                className="btn-outline w-full flex items-center justify-center gap-2 text-sm"
+              >
+                <FileDown className="w-4 h-4" />
+                Download CV
+              </a>
+            )}
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}

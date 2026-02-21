@@ -49,8 +49,27 @@ const Intro = () => {
 
   if (!intro) return null
 
-  // Use uploaded resume or fallback to default
+  // Use uploaded resume from database, fallback to static file
   const resumeLink = resumeUrl || Resume
+  const hasResume = !!resumeUrl
+
+  const handleDownloadResume = async (e) => {
+    e.preventDefault()
+    try {
+      const response = await fetch(resumeLink)
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = `${name || 'Resume'}_Resume.pdf`
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+    } catch {
+      window.open(resumeLink, '_blank')
+    }
+  }
 
   return (
     <div className="flex min-h-[85vh] sm:min-h-[75vh] justify-between items-center relative overflow-hidden px-4" id='home'>
@@ -83,16 +102,21 @@ const Intro = () => {
 
         {/* Buttons with new styles */}
         <div className="btns flex gap-6 mt-6 sm:gap-4 animate-fadeIn delay-400">
-          <a
-            href={resumeLink}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className='btn-primary flex items-center gap-2 sm:text-sm hover-lift'
-          >
-            <FileDown className="w-5 h-5" />
-            Download Resume
-          </a>
+          {hasResume ? (
+            <a
+              href={resumeLink}
+              onClick={handleDownloadResume}
+              className='btn-primary flex items-center gap-2 sm:text-sm hover-lift'
+            >
+              <FileDown className="w-5 h-5" />
+              Download Resume
+            </a>
+          ) : (
+            <span className='flex items-center gap-2 sm:text-sm px-6 py-2.5 rounded-lg border border-gray-600 text-gray-500 cursor-not-allowed opacity-60'>
+              <FileDown className="w-5 h-5" />
+              Resume Not Available
+            </span>
+          )}
           <a
             href="#contact"
             className='btn-outline flex items-center gap-2 sm:text-sm sm:px-4 hover-lift'

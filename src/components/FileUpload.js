@@ -158,7 +158,7 @@ const FileUpload = ({
                 </div>
                 <p className="text-green-700 font-medium mb-2">PDF uploaded</p>
                 <a
-                  href={value}
+                  href={value.includes('cloudinary') ? `https://docs.google.com/viewer?url=${encodeURIComponent(value)}&embedded=true` : value}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-sm text-blue-600 hover:underline flex items-center justify-center gap-1"
